@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/usr/local/share/keyd/layouts'
+let g:netrw_dirhist_9='/etc/cron.hourly'
+let g:netrw_dirhist_8='/usr/lib/systemd/system'
+let g:netrw_dirhist_7='/etc/systemd/network'
+let g:netrw_dirhist_6='/home/pedro/downloads/extrair/lucidglyph-master/src'
+let g:netrw_dirhist_5='/home/pedro/downloads/extrair/lucidglyph-master'
+let g:netrw_dirhist_4='/home/pedro/downloads/extrair/lucidglyph-master/src'
+let g:netrw_dirhist_3='/home/pedro/downloads/extrair/lucidglyph-master/src/modules'
+let g:netrw_dirhist_2='/home/pedro/downloads/extrair/lucidglyph-master/src/modules/fontconfig'
+let g:netrw_dirhist_1='/home/pedro/downloads/extrair/lucidglyph-master/src/modules'

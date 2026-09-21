@@ -1,0 +1,14 @@
+# Habilita a cor em bash completion.
+set colored-stats on 
+
+# Exibe o modo
+set show-mode-in-prompt on
+
+# Definindo string modo inserção
+set vi-ins-mode-string \1\e[0m\2[I]\1\e[0m\2
+
+# Definindo string modo normal
+set vi-cmd-mode-string \1\e[90m\2[N]\1\e[0m\2 
+
+# Delay do esc
+set keyseq-timeout 50
