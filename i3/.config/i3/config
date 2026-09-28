@@ -1,0 +1,351 @@
+# i3.config Pedro Otávio
+
+#------------------------------------------------------------------------------
+# Variáveis
+#------------------------------------------------------------------------------
+
+	# Define a tecla Super como prefixo
+	set $mod Mod4
+
+	# Define a tecla Alt como prefixo
+	#set $mod Mod1
+
+	# Atalho para bindsym
+	set $sup bindsym Mod4
+
+	# Atalho para exec
+	set $exec exec --no-startup-id
+	set $exec_always exec_always --no-startup-id
+
+	# Atalho para diretório pessoal de executáveis
+	set $bin_path ~/bin/i3wm/
+
+
+
+
+#------------------------------------------------------------------------------
+# Cores
+#------------------------------------------------------------------------------
+
+# class                  borda     fundo     texto     indicador filho
+client.focused           #a9b665   #a9b665   #3c3836   #8dbdae
+client.focused_inactive  #44475A   #282828   #d4be98   #282828
+client.unfocused         #282828   #282828   #d4be98   #282828
+client.urgent            #cc241d   #282828   #ebdbb2   #cc241d #cc241d
+
+
+#------------------------------------------------------------------------------
+# Aparencia
+#------------------------------------------------------------------------------
+
+	# Fonte do título da janela/barra de status
+	font pango:Inter Semi Bold 10
+	#font pango:DejaVu Sans Mono 8
+
+	# Borda da janela (normal: com o título)
+	#default_border none
+	default_border pixel 2
+	default_floating_border pixel 2
+	# Espaço entre as janelas
+	gaps inner 3
+#	gaps outer 8
+	smart_gaps on
+
+	# Cor da janela em foco
+	#client.focused #541F50 #541F50 #C5C8C6 #885884 #541F50
+
+#------------------------------------------------------------------------------
+# Movimentação/Janelas
+#------------------------------------------------------------------------------
+
+	# Alterna entre as janelas
+	$sup+h focus left
+	$sup+j focus down
+	$sup+k focus up
+	$sup+l focus right
+
+	$sup+Left focus left
+	$sup+Down focus down
+	$sup+Up focus up
+	$sup+Right focus right
+
+	# Move as janelas
+	$sup+Shift+h move left
+	$sup+Shift+j move down
+	$sup+Shift+k move up
+	$sup+Shift+l move right
+
+	$sup+Shift+Left move left
+	$sup+Shift+Down move down
+	$sup+Shift+Up move up
+	$sup+Shift+Right move right
+
+	# Alterna entre vertical e horizontal a abertura da próxima janela
+	$sup+semicolon split toggle
+
+	# Muda o layout das janelas
+	$sup+Shift+question layout toggle splith splitv tabbed
+
+	# Tela cheia
+	$sup+f fullscreen toggle
+
+	# Abre as janelas em: (default, stacking, tabbed)
+	workspace_layout default
+
+	# toggle tiling / floating
+	$sup+Shift+space floating toggle
+
+	# change focus between tiling / floating windows
+	$sup+space focus mode_toggle
+
+	# focus the parent container
+	$sup+a focus parent
+
+	# focus the child container
+	#$sup+d focus child
+
+	# Use Mouse+$mod to drag floating windows to their wanted position
+	#bindsym $mod+period floating enable
+	floating_modifier Mod1
+
+	# move tiling windows via drag & drop by left-clicking into the title bar,
+	# or left-clicking anywhere into the window while holding the floating modifier.
+	tiling_drag modifier titlebar
+
+
+
+
+#------------------------------------------------------------------------------
+# Define os Nomes da Áreas de Trabalho (Não alterar)
+#------------------------------------------------------------------------------
+
+	set $ws1 "1"
+	set $ws2 "2"
+	set $ws3 "3"
+	set $ws4 "4"
+	set $ws5 "5"
+	set $ws6 "6"
+	set $ws7 "7"
+	set $ws8 "8"
+	set $ws9 "9"
+	set $ws10 "10"
+
+
+
+
+#------------------------------------------------------------------------------
+# Trocar de Área de Trabalho
+#------------------------------------------------------------------------------
+
+
+	$sup+1 workspace number $ws1
+	$sup+2 workspace number $ws2
+	$sup+3 workspace number $ws3
+	$sup+4 workspace number $ws4
+	$sup+5 workspace number $ws5
+	$sup+6 workspace number $ws6
+	$sup+7 workspace number $ws7
+	$sup+8 workspace number $ws8
+	$sup+9 workspace number $ws9
+	$sup+0 workspace number $ws10
+
+
+
+
+#------------------------------------------------------------------------------
+# Mover conteiner/janela para Área de Trabalho
+#------------------------------------------------------------------------------
+
+	$sup+Shift+1 move container to workspace number $ws1
+	$sup+Shift+2 move container to workspace number $ws2
+	$sup+Shift+3 move container to workspace number $ws3
+	$sup+Shift+4 move container to workspace number $ws4
+	$sup+Shift+5 move container to workspace number $ws5
+	$sup+Shift+6 move container to workspace number $ws6
+	$sup+Shift+7 move container to workspace number $ws7
+	$sup+Shift+8 move container to workspace number $ws8
+	$sup+Shift+9 move container to workspace number $ws9
+	$sup+Shift+0 move container to workspace number $ws10
+
+
+
+
+
+#------------------------------------------------------------------------------
+# Redimencionar janelas
+#------------------------------------------------------------------------------
+
+	$sup+Control Right resize grow width 5 px or 5 ppt
+	$sup+Control Left resize shrink width 5 px or 5 ppt 
+	$sup+Control Up resize shrink height 5 px or 5 ppt
+	$sup+Control Down resize grow height 5 px or 5 ppt
+
+
+
+
+#------------------------------------------------------------------------------
+# Barra de status
+#------------------------------------------------------------------------------
+
+	bar {
+        	status_command i3blocks
+		font pango:Open Sans 12
+		
+		colors {
+			background #282828
+			statusline #d4be98
+			
+			focused_workspace #a9b665 #a9b665 #3c3836
+			urgent_workspace #cc241d #cc241d #3c3836
+		}
+		
+	}
+
+	# Configuração do calendar i3blocks
+	for_window [class="Yad"] floating enable
+
+
+#------------------------------------------------------------------------------
+# Recarregar, Resetar
+#------------------------------------------------------------------------------
+
+	# Recarrega o arquivo de configuração do i3
+	$sup+Shift+c reload
+
+	# Reseta o i3; Preserva o layout/sessão; Útil para fazer um upgrade o i3
+	$sup+Shift+r restart
+
+
+
+
+
+#------------------------------------------------------------------------------
+# Desligar, Reiniciar, Sair
+
+#------------------------------------------------------------------------------
+
+	$sup+Shift+e $exec $bin_path/rofi/rofi_shut.sh
+	#$sup+Shift+e exec "i3-nagbar -t warning -m 'Deseja sair do i3?' -B 'Sim, sair!' 'i3-msg exit'"
+
+
+
+
+
+#------------------------------------------------------------------------------
+# Meus atalhos
+#------------------------------------------------------------------------------
+
+	# Executa o terminal
+	$sup+Return $exec i3-sensible-terminal
+
+	# Encerra a janela
+	$sup+q kill
+
+	# Firefox
+	$sup+w $exec firefox-esr
+
+	# Mousepad
+	$sup+n $exec mousepad
+
+	# Mate-calc
+	$sup+c $exec mate-calc
+
+	# Tmux2
+	$sup+t $exec xfce4-terminal -e $bin_path/tmux2.sh
+	# tmux4
+	$sup+Shift+t $exec xfce4-terminal -e $bin_path/tmux4.sh
+
+	# Workspace2 -> qutebrowser -Tmux
+	$sup+y workspace 2; append_layout ~/.config/i3/layout-workspace2.json; $exec qutebrowser ; $exec $bin_path/tmux-workspace2.sh
+
+	# Workspace10 -> Discord
+	$sup+Shift+d workspace 10; $exec discord
+
+	# Printa com o gnome-screenshot
+	#bindsym Print $exec gnome-screenshot -i
+
+	# Printa com o maim
+	# Modo clipboard sem save
+	set $mode_launcher  Screenshot to clipboard [F]ullscreen [S]election
+	bindsym Print mode "$mode_launcher"
+
+	mode "$mode_launcher" {
+				bindsym s $exec $bin_path/printador/printador.sh s; mode default
+				bindsym f $exec $bin_path/printador/printador.sh f; mode default
+				bindsym Escape mode default
+			}
+	# Modo clipboard com save
+	set $save_mode Screenshot Save/Copy: [F]ullscreen [S]election
+	bindsym Shift+Print mode "$save_mode"
+
+	mode "$save_mode" {
+				bindsym s $exec $bin_path/printador/printador.sh ss; mode default
+				bindsym f $exec $bin_path/printador/printador.sh ff; mode default
+				bindsym Escape mode default
+			}
+
+	# rofi
+	$sup+d $exec rofi -show drun
+
+	# rofi net search
+	$sup+s $exec $bin_path/rofi/rofi_search.sh
+
+	# Ranger
+
+	$sup+r $exec alacritty -e ranger
+	# A more modern dmenu replacement is rofi:
+	# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+	# There also is i3-dmenu-desktop which only displays applications shipping a
+	# .desktop file. It is a wrapper around dmenu, so you need that installed.
+	# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+
+
+
+
+
+#------------------------------------------------------------------------------
+# Inicialização
+#------------------------------------------------------------------------------
+
+	# mapeia Caps para Esc e Shift+caps para Caps
+	#$exec setxkbmap -option caps:escape_shifted_capslock
+
+	# remapeia a tecla Windows para AltGr e vice-versa.
+	#$exec xmodmap -e "keycode 133 = ISO_Level3_Shift" && xmodmap -e "keycode 108 = Super_L"
+
+	# Configura o nitrogen
+	$exec nitrogen --restore
+
+	# Executa o Redshift (Controle de luz azul)
+	$exec redshift
+
+	# Executa os arquivos .desktop do XDG usando de dex (https://wiki.archlinux.org/index.php/XDG_Autostart)
+	$exec dex --autostart --environment i3
+
+	# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+	# they are included here as an example. Modify as you see fit.
+
+	# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+	# screen before suspend. Use loginctl lock-session to lock your screen.
+
+	#$exec xss-lock --transfer-sleep-lock -- i3lock --nofork --image=/home/pedro/imgs/wallpapers/lock/standby.png
+
+	# NetworkManager is the most popular way to manage wireless networks on Linux,
+	# and nm-applet is a desktop environment-independent system tray GUI for it.
+	$exec nm-applet
+
+	# Use pactl to adjust volume in PulseAudio.
+	#set $refresh_i3status killall -SIGUSR1 i3status
+
+	# Ajuste de Volume via amixer com teclas de multimídia.
+	bindsym XF86AudioRaiseVolume $exec amixer sset 'Master' 5%+ && $refresh_i3status
+	bindsym XF86AudioLowerVolume $exec amixer sset 'Master' 5%- && $refresh_i3status
+	#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+	#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+	# Ajuste de Brilho via xbacklight com teclas multimídia.
+#	bindsym XF86MonBrightnessUp $exec xbacklight -inc 20
+#	bindsym XF86MonBrightnessDown $exec xbacklight -dec 20
+
+
+
