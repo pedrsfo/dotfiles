@@ -10,6 +10,9 @@ set relativenumber
 " Habilita coluna de limite
 "set colorcolumn 100
 
+" Força o cursor permanecer como bloco fixo/estático
+let &t_ti .= "\e[2 q"
+
 " Define o tamanho da tabulação para 4 espaços ao invés de 8
 set shiftwidth=4
 
