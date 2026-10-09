@@ -21,8 +21,6 @@
 	set $bin_path ~/bin/i3wm/
 
 
-
-
 #------------------------------------------------------------------------------
 # Cores
 #------------------------------------------------------------------------------
@@ -214,8 +212,6 @@ client.urgent            #cc241d   #282828   #ebdbb2   #cc241d #cc241d
 
 	# Reseta o i3; Preserva o layout/sessão; Útil para fazer um upgrade o i3
 	$sup+Shift+r restart
-
-
 
 
 

@@ -1,0 +1,335 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+#---------------------------------------
+### Variables
+#--------------------------------------
+
+# Define a tecla Super como prefixo
+set $mod Mod4
+
+# Atalho para bindsym
+set $sup bindsym Mod4
+
+# Diretório pessoal de executáveis
+set $bin_path ~/.local/bin/sway/
+
+# Home row vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Terminal
+set $term alacritty
+
+# Menu rofi
+set $menu rofi
+#set $menu wmenu-run
+
+include /etc/sway/config-vars.d/*
+
+#--------------------------------------
+### Input configuration
+#--------------------------------------
+
+    input * {
+	xkb_layout br
+	xkb_variant abnt2
+	xkb_model abnt2
+    }
+
+#--------------------------------------
+### Output configuration
+#--------------------------------------
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# This is commented in Debian, because the Sway wallpaper files are in a separate
+# package `sway-backgrounds`. Installing this package drops a config file to
+# /etc/sway/config.d/
+  output * bg /usr/share/images/base-desktop/imagem.png fill
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+#--------------------------------------
+### Cores
+#--------------------------------------
+
+# class                  borda     fundo     texto     indicador filho
+client.focused           #a9b665   #a9b665   #3c3836   #8dbdae
+client.focused_inactive  #44475A   #282828   #d4be98   #282828
+client.unfocused         #282828   #282828   #d4be98   #282828
+client.urgent            #cc241d   #282828   #ebdbb2   #cc241d #cc241d
+
+
+#--------------------------------------
+### Aparencia
+#--------------------------------------
+
+	# Fonte do título da janela/barra de status
+	font pango:Inter Semi Bold 10
+	#font pango:DejaVu Sans Mono 8
+
+	# Borda da janela (normal: com o título)
+	#default_border none
+	default_border pixel 2
+	default_floating_border pixel 2
+	# Espaço entre as janelas
+	gaps inner 3
+#	gaps outer 8
+	smart_gaps on
+
+	# Cor da janela em foco
+	#client.focused #541F50 #541F50 #C5C8C6 #885884 #541F50
+
+#--------------------------------------
+### Idle configuration
+#--------------------------------------
+
+# Example configuration:
+#
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+#--------------------------------------
+### Atalhos
+#--------------------------------------
+
+    # Abrir terminal
+    $sup+Return exec $term
+
+    # Fechar janela em foco
+    $sup+q kill
+
+    # Abrir menu de inicialização de aplicativos
+    $sup+d exec $menu -show drun
+
+    # Pesquisa na internet com rofi
+    $sup+s $exec $bin_path/rofi/rofi_search.sh
+
+	# Abri Firefox
+	$sup+w $exec firefox-esr
+
+	# Abrir Mousepad
+	$sup+n $exec mousepad
+
+	# Abrir Mate-calc
+	$sup+c $exec mate-calc
+
+	# Tmux2
+	$sup+t $exec xfce4-terminal -e $bin_path/tmux2.sh
+	# tmux4
+	$sup+Shift+t $exec xfce4-terminal -e $bin_path/tmux4.sh
+
+	# Workspace2 -> qutebrowser -Tmux
+	$sup+y workspace 2; append_layout ~/.config/i3/layout-workspace2.json; $exec qutebrowser ; $exec $bin_path/tmux-workspace2.sh
+
+	# Workspace10 -> Discord
+	$sup+Shift+d workspace 10; $exec discord
+
+        # Reload the configuration file
+        $sup+Shift+c reload
+
+        floating_modifier $mod normal
+
+#--------------------------------------
+# Desligar, Reiniciar, Sair
+#--------------------------------------
+
+	# Abre o rofi para selecionar
+	$sup+Shift+e exec $bin_path/rofi/rofi_shut.sh
+
+    # Exit sway (logs you out of your Wayland session)
+    #bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+#
+#--------------------------------------
+# Movimentação
+#--------------------------------------
+#
+    # Move your focus around
+    $sup+$left focus left
+    $sup+$down focus down
+    $sup+$up focus up
+    $sup+$right focus right
+   # # Or use $mod+[up|down|left|right]
+   # bindsym $mod+Left focus left
+   # bindsym $mod+Down focus down
+   # bindsym $mod+Up focus up
+   # bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    $sup+Shift+$left move left
+    $sup+Shift+$down move down
+    $sup+Shift+$up move up
+    $sup+Shift+$right move right
+    # Ditto, with arrow keys
+   # bindsym $mod+Shift+Left move left
+   # bindsym $mod+Shift+Down move down
+   # bindsym $mod+Shift+Up move up
+   # bindsym $mod+Shift+Right move right
+#
+#--------------------------------------
+# Workspaces:
+#--------------------------------------
+#
+    # Define o Workspace 1 como padrão na inicialização
+    workspace 1
+
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # Alterna entre vertial e horizontal a abertura da próxima janela
+    $sup+semicolon split toggle
+
+# Muda o layout das janelas 
+    $sup+Shift+semicolon layout toggle splith splitv #tabbed
+
+    # Make the current focus fullscreen
+    $sup+f fullscreen toggle
+
+    # Toggle the current focus between tiling and floating mode
+    $sup+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    $sup+space focus mode_toggle
+
+    # Move focus to the parent container
+    $sup+a focus parent
+
+    floating_modifier Mod1
+
+    #tiling_drag modifier titlebar
+
+#
+#--------------------------------------
+# Scratchpad:
+#--------------------------------------
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+#--------------------------------------
+# Resizing containers:
+#--------------------------------------
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+#
+# Utilities:
+#
+
+#--------------------------------------
+# Inicialização 
+#--------------------------------------
+
+   exec redshift
+
+   exec dex --autostart --environment 
+
+   exec nm-applet
+
+    # Special keys to adjust volume via PulseAudio
+    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+    # Special keys to adjust brightness via brightnessctl
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    # Special key to take a screenshot with grim
+    bindsym Print exec grim
+
+#
+#--------------------------------------
+# Status Bar:
+#--------------------------------------
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position bottom
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    swaybar_command swaybar
+    status_command i3blocks
+    #status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    #status_command i3blocks
+    font pango: Open Sans 12
+
+    colors {
+        statusline #d4be98
+        background #282828
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
+
+	# Configuração do calendário i3blocks
+	for_window [class="Yad"] floating enable, move position
+
+### Configurações adicionais
+
+include /etc/sway/config.d/*

@@ -13,7 +13,9 @@ case "$BLOCK_BUTTON" in
 
 #Comando
 
-i3-msg -q "exec yad --calendar --width=$WIDTH --height=$HEIGHT --undecorate --fixed --close-on-unfocus --no-buttons --posx=$posX --posy=$posY > /dev/null"
+#swaymsg -q "exec yad --calendar --width=$WIDTH --height=$HEIGHT --undecorate --fixed --close-on-unfocus --no-buttons --posx=$posX --posy=$posY > /dev/null"
+
+swaymsg -q "exec yad --calendar --width=$WIDTH --height=$HEIGHT --undecorate --fixed --close-on-unfocus --no-buttons > /dev/null" 
 
 esac
 

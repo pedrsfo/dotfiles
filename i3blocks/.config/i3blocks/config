@@ -128,7 +128,7 @@ signal=10
 # Meu calendário
 [calendar]
 label=
-interval=1
+interval=once
 separator=false
 separator_block_width=5
 
